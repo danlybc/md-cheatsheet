@@ -1,28 +1,43 @@
 .App {
   font-family: 'Bahnschrift';
+  position: relative;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.App--header {
+  margin-bottom: 100;
+  position: fixed;
+  z-index: 300;
+  width: 100%;
   font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #DBDBDB;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%);
+  -webkit-transform: translate(-50%);
+  -moz-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+  -o-transform: translate(-50%);
 }
+
+.Logo {
+  position: relative;
+}
+
+.Logo .Logo--mark {
+  z-index: 3;
+  position: relative;
+}
+
+.Logo .Logo--underline {
+  width: 90%;
+  height: 10px;
+  background: #f0a500;
+  position: absolute;
+  z-index: 2;
+  top: 65%;
+}
+
+
 
 .App-link {
   color: #61dafb;
@@ -36,4 +51,24 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.syntaxes--wrapper {
+  background: white;
+  height: 100%;
+  padding: 70px;
+  border-radius: 1.3vw;
+  margin-bottom: 50px;
+  -webkit-border-radius: 1.3vw;
+  -moz-border-radius: 1.3vw;
+  -ms-border-radius: 1.3vw;
+  -o-border-radius: 1.3vw;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-top: 28vh;
+}
+
+.syntaxes--wrapper .row:not(:last-child) {
+  margin-bottom: 100px;
 }
