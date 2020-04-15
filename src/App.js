@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Col, Row, Navbar } from "react-bootstrap";
+import { Container, Col, Row, Navbar, Nav, Dropdown } from "react-bootstrap";
 
 import Card from "./components/Card.component";
 
@@ -8,7 +8,40 @@ import syntaxes from "./data/syntaxes.json";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 class App extends React.Component {
+  state = {
+    activeSyntax: syntaxes[0].title
+  };
+  componentDidMount() {
+    this.handleScroll();
+  }
+
+  handleScroll() {
+    const wrapper = document.querySelector("body");
+    wrapper.addEventListener("wheel", e => {
+      for (let syntax of syntaxes) {
+        if (
+          this.isInViewport(
+            document.querySelector(`#${syntax.title.toLowerCase()}`),
+            -100
+          )
+        ) {
+          this.setState({ activeSyntax: syntax.title });
+        }
+      }
+    });
+  }
+
+  /**
+   * Check if query is in viewport
+   * @param query Query to check for viewport
+   * @param {number} offset Offset property
+   */
+  isInViewport(query, offset = 0) {
+    const top = query.getBoundingClientRect().top;
+    return top + offset >= 0 && top - offset <= window.innerHeight;
+  }
   render() {
+    const { activeSyntax } = this.state;
     return (
       <div className="App">
         <Container className="App--header">
@@ -24,11 +57,53 @@ class App extends React.Component {
                 <div className="Logo--underline"></div>
               </div>
             </Col>
+            <Col md={7}>
+              <Dropdown style={{ float: "left" }}>
+                <Dropdown.Toggle />
+                <Dropdown.Menu>
+                  {syntaxes.map((syntax, i) => (
+                    <Dropdown.Item
+                      href={`#${syntax.title.toLowerCase()}`}
+                      onClick={() =>
+                        this.setState({ activeSyntax: syntax.title })
+                      }
+                    >
+                      {syntax.title}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
+              <Nav
+                className="flex-column App--nav"
+                style={{
+                  position: "absolute",
+                  transition: ".3s",
+                  left: 60,
+                  top:
+                    0 -
+                    syntaxes.findIndex(
+                      syntax => syntax.title === this.state.activeSyntax
+                    ) *
+                      54
+                }}
+              >
+                {syntaxes.map((syntax, i) => (
+                  <Nav.Link
+                    style={{ opacity: 0 }}
+                    className={`${
+                      syntax.title === activeSyntax ? "active" : ""
+                    }`}
+                  >
+                    {syntax.title}
+                  </Nav.Link>
+                ))}
+              </Nav>
+            </Col>
           </Row>
         </Container>
         <Container className="syntaxes--wrapper">
           {syntaxes.map((syntax, i) => (
-            <Row>
+            <Row id={syntax.title.toLowerCase()}>
               <Col>
                 <Card
                   align={i % 2 ? "right" : "left"}

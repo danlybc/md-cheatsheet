@@ -7,5 +7,15 @@
     "title": "Separator",
     "markdown": "# Horizontal separator,\n___\nAccept two writings\n---",
     "copy": "---"
+  },
+  {
+    "title": "Lists",
+    "markdown": "# Horizontal separator,\n___\nAccept two writings\n---",
+    "copy": "---"
+  },
+  {
+    "title": "Tries",
+    "markdown": "# Horizontal separator,\n___\nAccept two writings\n---",
+    "copy": "---"
   }
 ]
