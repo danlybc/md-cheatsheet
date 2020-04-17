@@ -54,7 +54,7 @@ class App extends React.Component {
       });
 
       receiver.addEventListener("click", () => {
-        tooltip.innerText = receiver.dataset.tooltipclicked;
+        tooltip.innerText = receiver.dataset.tooltipclicked || "✔️";
       });
       receiver.addEventListener("mouseleave", () => {
         tooltip.remove();
@@ -63,6 +63,9 @@ class App extends React.Component {
   }
   render() {
     const { activeSyntax } = this.state;
+    const activeSyntaxIdx = syntaxes.findIndex(
+      (syntax) => syntax.title === this.state.activeSyntax
+    );
     return (
       <div className="App">
         <Container className="App--header">
@@ -73,14 +76,14 @@ class App extends React.Component {
             }}
           >
             <Col md={5}>
-              <div className="Logo" data-tooltip="Click to go up">
+              <div className="Logo">
                 <h1 className="Logo--mark">Markdown Cheatsheet</h1>
                 <div className="Logo--underline"></div>
               </div>
             </Col>
             <Col md={7}>
               <Dropdown style={{ float: "left" }}>
-                <Dropdown.Toggle />
+                <Dropdown.Toggle className="App--nav__customToggle" />
                 <Dropdown.Menu>
                   {syntaxes.map((syntax, i) => (
                     <Dropdown.Item
@@ -100,12 +103,7 @@ class App extends React.Component {
                   position: "absolute",
                   transition: ".3s",
                   left: 60,
-                  top:
-                    0 -
-                    syntaxes.findIndex(
-                      (syntax) => syntax.title === this.state.activeSyntax
-                    ) *
-                      57,
+                  top: -10 - activeSyntaxIdx * 50,
                 }}
               >
                 {syntaxes.map((syntax, i) => (
@@ -136,6 +134,19 @@ class App extends React.Component {
             </Row>
           ))}
         </Container>
+        <footer>
+          <Container>
+            <Row>
+              <Col className="text-center pb-3">
+                Made with{" "}
+                <span role="img" aria-label="heart">
+                  ❤️
+                </span>{" "}
+                by <a href="danly.co">danly.co</a>
+              </Col>
+            </Row>
+          </Container>
+        </footer>
       </div>
     );
   }
