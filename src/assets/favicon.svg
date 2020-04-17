@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1080 1080" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <rect id="Plan-de-travail1" serif:id="Plan de travail1" x="0" y="0" width="1080" height="1080" style="fill:none;"/>
+    <g id="Plan-de-travail11" serif:id="Plan de travail1">
+        <g transform="matrix(0.814815,0,0,0.814815,100,100)">
+            <path d="M1080,118.8C1080,53.232 1026.77,0 961.2,0L118.8,0C53.232,0 0,53.232 0,118.8L0,961.2C0,1026.77 53.232,1080 118.8,1080L961.2,1080C1026.77,1080 1080,1026.77 1080,961.2L1080,118.8Z" style="fill:rgb(39,39,39);"/>
+        </g>
+        <g transform="matrix(0.852941,0,0,0.666667,42.0588,300)">
+            <rect x="150" y="690" width="680" height="120" style="fill:rgb(240,165,0);"/>
+        </g>
+        <g transform="matrix(20.3499,0,0,20.3499,-7775.49,-7591.83)">
+            <text x="388.913px" y="408.6px" style="font-family:'Manrope3-Bold', 'Manrope3';font-weight:700;font-size:24px;fill:white;">MD</text>
+        </g>
+    </g>
+</svg>
