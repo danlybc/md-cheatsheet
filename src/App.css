@@ -3,6 +3,11 @@
   position: relative;
 }
 
+::selection {
+  color: #f0a500;
+  background: black;
+}
+
 .App--header {
   margin-bottom: 100;
   position: fixed;
@@ -17,6 +22,7 @@
   -moz-transform: translate(-50%);
   -ms-transform: translate(-50%);
   -o-transform: translate(-50%);
+  overflow: hidden;
 }
 
 .Logo {
@@ -50,8 +56,10 @@
 }
 
 
-.App-link {
-  color: #61dafb;
+a {
+  color: rgb(47, 47, 47) !important;
+  padding: 5px;
+
 }
 
 @keyframes App-logo-spin {
@@ -82,4 +90,46 @@
 
 .syntaxes--wrapper .row:not(:last-child) {
   margin-bottom: 100px;
+}
+
+.App--tooltip {
+  transition: .3s;
+  position: absolute;
+  padding: 9px;
+  background: black;
+  color: white;
+  border-radius: 1.3vw;
+  -webkit-border-radius: 1.3vw;
+  -moz-border-radius: 1.3vw;
+  -ms-border-radius: 1.3vw;
+  -o-border-radius: 1.3vw;
+  min-width: 70%;
+  text-align: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  z-index: 50;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -ms-transition: .3s;
+  -o-transition: .3s;
+}
+
+@keyframes Appears {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.App--tooltip.in {
+  animation: Appears 1s forwards;
+  -webkit-animation: Appears 1s forwards;
 }

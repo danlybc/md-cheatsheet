@@ -9,20 +9,21 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 class App extends React.Component {
   state = {
-    activeSyntax: syntaxes[0].title
+    activeSyntax: syntaxes[0].title,
   };
   componentDidMount() {
     this.handleScroll();
+    this.handleTooltips();
   }
 
   handleScroll() {
     const wrapper = document.querySelector("body");
-    wrapper.addEventListener("wheel", e => {
+    wrapper.addEventListener("wheel", (e) => {
       for (let syntax of syntaxes) {
         if (
           this.isInViewport(
             document.querySelector(`#${syntax.title.toLowerCase()}`),
-            -100
+            -(window.innerHeight / syntaxes.length)
           )
         ) {
           this.setState({ activeSyntax: syntax.title });
@@ -40,6 +41,26 @@ class App extends React.Component {
     const top = query.getBoundingClientRect().top;
     return top + offset >= 0 && top - offset <= window.innerHeight;
   }
+
+  handleTooltips() {
+    const tooltipReceivers = document.querySelectorAll("[data-tooltip]");
+    for (let receiver of tooltipReceivers) {
+      let tooltip = document.createElement("div");
+
+      receiver.addEventListener("mouseenter", () => {
+        tooltip.innerText = receiver.dataset.tooltip;
+        receiver.append(tooltip);
+        tooltip.classList = "App--tooltip in";
+      });
+
+      receiver.addEventListener("click", () => {
+        tooltip.innerText = receiver.dataset.tooltipclicked;
+      });
+      receiver.addEventListener("mouseleave", () => {
+        tooltip.remove();
+      });
+    }
+  }
   render() {
     const { activeSyntax } = this.state;
     return (
@@ -48,11 +69,11 @@ class App extends React.Component {
           <Row
             style={{
               padding: 20,
-              paddingTop: 80
+              paddingTop: 80,
             }}
           >
             <Col md={5}>
-              <div className="Logo">
+              <div className="Logo" data-tooltip="Click to go up">
                 <h1 className="Logo--mark">Markdown Cheatsheet</h1>
                 <div className="Logo--underline"></div>
               </div>
@@ -82,9 +103,9 @@ class App extends React.Component {
                   top:
                     0 -
                     syntaxes.findIndex(
-                      syntax => syntax.title === this.state.activeSyntax
+                      (syntax) => syntax.title === this.state.activeSyntax
                     ) *
-                      54
+                      57,
                 }}
               >
                 {syntaxes.map((syntax, i) => (

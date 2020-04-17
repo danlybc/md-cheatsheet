@@ -5,6 +5,17 @@ import ReactMarkdown from "react-markdown";
 import { clipboard } from "../utils/clipboard";
 
 const StyledCard = styled.div`
+  transition: 0.3s;
+  :hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+    & .Card--title {
+      transform: scale(0.9);
+    }
+  }
+
   position: relative;
   width: 450px;
   min-height: 120px;
@@ -12,7 +23,7 @@ const StyledCard = styled.div`
   text-align: left;
   padding: 20px;
   background: #f0a500;
-  ${props =>
+  ${(props) =>
     props.align &&
     css`
       border-top-${props.align}-radius: 0;
@@ -20,9 +31,10 @@ const StyledCard = styled.div`
     `}
 
   & .Card--title {
+    transition: 0.3s;
     position: absolute;
     top: -50px;
-    ${props =>
+    ${(props) =>
       props.align &&
       css`
         ${props.align}: 0;
@@ -60,7 +72,7 @@ const MD_EX = {
   ## number of hashes defines
   ### the importance level
   #### up to h6`,
-  copy: "# placeholder"
+  copy: "# placeholder",
 };
 
 class Card extends Component {
@@ -69,7 +81,12 @@ class Card extends Component {
       ? this.props
       : MD_EX;
     return (
-      <StyledCard align={align} onClick={() => clipboard.copy(copy)}>
+      <StyledCard
+        align={align}
+        onClick={() => clipboard.copy(copy)}
+        data-tooltip="Click card to copy placeholder"
+        data-tooltipclicked="Copied ✅"
+      >
         <button className="Card--button__copy">
           <span role="img" aria-label="clipboard">
             📋
